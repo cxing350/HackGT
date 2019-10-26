@@ -10,9 +10,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private HashMap<String, Integer> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +26,14 @@ public class MainActivity extends AppCompatActivity {
 
         final LinearLayout shoppingList = findViewById(R.id.shoppinglist);
 
-
+        items = new HashMap<>();
 
         textField.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    shoppingList.addView(new ListEntry(MainActivity.this, textField.getText().toString()));
-
+                    shoppingList.addView(new ListEntry(MainActivity.this, textField.getText().toString(), items));
+                    items.put(textField.getText().toString(), 1);
                     return true;
                 }
                 return false;

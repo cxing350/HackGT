@@ -1,22 +1,25 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 
 public class ListEntry extends LinearLayout {
     private TextView itemName;
 
-    public ListEntry(Context context, String newItemName) {
+    public ListEntry(Context context, final String newItemName, final HashMap<String, Integer> inventory) {
         super(context);
         setOrientation(LinearLayout.HORIZONTAL);
 
 
-        Spinner quantity = new Spinner(context);
+        final Spinner quantity = new Spinner(context);
         //quantity.setDropDownWidth(150);
         //quantity.setDropDownVerticalOffset(20600);
         //7600
@@ -44,6 +47,17 @@ public class ListEntry extends LinearLayout {
         ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(context, android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         quantity.setAdapter(adapter);
+        quantity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                inventory.replace(newItemName, (Integer) (quantity.getSelectedItem()));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                return;
+            }
+        });
         this.addView(quantity);
 
         itemName = new TextView(context);
