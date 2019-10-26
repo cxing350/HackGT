@@ -7,7 +7,10 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,16 +20,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final EditText textField = findViewById(R.id.textField);
-        final TextView list = findViewById(R.id.list);
 
-        list.setMovementMethod(new ScrollingMovementMethod());
+        final LinearLayout shoppingList = findViewById(R.id.shoppinglist);
+
+
 
         textField.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    list.setText(list.getText() + "\n" + textField.getText());
-                    textField.setText("");
+                    shoppingList.addView(new ListEntry(MainActivity.this, textField.getText().toString()));
+
                     return true;
                 }
                 return false;
