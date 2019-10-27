@@ -38,12 +38,13 @@ public class MainActivity extends AppCompatActivity {
         textField.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER && !items.containsKey(textField.getText().toString())) {
                     shoppingList.addView(new ListEntry(MainActivity.this, textField.getText().toString(), items, shoppingList));
                     items.put(textField.getText().toString().toLowerCase(), 1);
                     textField.setText("");
                     return true;
                 }
+                textField.setText("");
                 return false;
             }
         });
