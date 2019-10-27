@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    shoppingList.addView(new ListEntry(MainActivity.this, textField.getText().toString(), items));
-                    items.put(textField.getText().toString(), 1);
+                    shoppingList.addView(new ListEntry(MainActivity.this, textField.getText().toString(), items, shoppingList));
+                    items.put(textField.getText().toString().toLowerCase(), 1);
                     textField.setText("");
                     return true;
                 }

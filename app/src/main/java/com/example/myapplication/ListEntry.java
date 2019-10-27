@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -14,7 +16,7 @@ import java.util.HashMap;
 public class ListEntry extends LinearLayout {
     private TextView itemName;
 
-    public ListEntry(Context context, final String newItemName, final HashMap<String, Integer> inventory) {
+    public ListEntry(Context context, final String newItemName, final HashMap<String, Integer> inventory, final LinearLayout parent) {
         super(context);
         setOrientation(LinearLayout.HORIZONTAL);
 
@@ -28,6 +30,18 @@ public class ListEntry extends LinearLayout {
         48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,
         77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99};
 
+        Button remove = new Button(context);
+        remove.setLayoutParams(new LinearLayout.LayoutParams(150, 150));
+        remove.setText("X");
+        remove.setBackgroundColor(Color.parseColor("#ffffff"));
+        remove.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parent.removeView(ListEntry.this);
+                inventory.remove(newItemName);
+            }
+        });
+        this.addView(remove);
 
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
