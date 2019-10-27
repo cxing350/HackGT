@@ -19,11 +19,11 @@ import java.util.Map;
 import java.util.Set;
 
 public class ShopActivity extends AppCompatActivity {
-    double[] companyAPrices = {2.45, 3.58, 2.18, 2.03, .99, 1.55, 1.73, 2.49, 4.11, 5.62};
+    double[] companyAPrices = {3.99, 3.59, 2.00, 3.99, .99, 2.99, 1.89, 7.89, 3.99, 11.99};
     Shop CompanyA = new Shop(companyAPrices);
-    double[] companyBPrices = {2.40, 3.46, 2.28, 2.07, 1.06, 1.42, 1.8, 2.50, 4.14, 5.48};
+    double[] companyBPrices = {5.99, 3.39, 1.89, 2.99, 1.99, 3.59, 2.00, 8.19, 4.99, 7.99};
     Shop CompanyB = new Shop(companyBPrices);
-    double[] companyCPrices = {2.44, 3.57, 2.24, 1.97, 1.04, 1.4, 1.70, 2.43, 4.13, 5.59};
+    double[] companyCPrices = {4.99, 3.99, 2.09, 2.50, 2.50, 3.39, 1.69, 10.99, 6.99, 8.99};
     Shop CompanyC = new Shop(companyCPrices);
 
     @Override

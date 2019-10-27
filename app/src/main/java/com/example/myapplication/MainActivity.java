@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
                     textField.setText("");
                     return true;
                 }
-                textField.setText("");
                 return false;
             }
         });
